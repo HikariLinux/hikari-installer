@@ -18,6 +18,7 @@ LIBFFI_PKG="libffi-$LIBFFI_VER-macos.tar.gz"
 M1N1="$PWD/m1n1"
 AFW="$PWD/asahi_firmware"
 SRC="$PWD/src"
+SCRIPTS="$PWD/scripts"
 DL="$PWD/dl"
 PACKAGE="$PWD/package"
 RELEASES="$PWD/releases"
@@ -103,7 +104,7 @@ cp -r "$AFW" "$PACKAGE/"
 if [ -r "$LOGO" ]; then
     cp "$LOGO" "$PACKAGE/logo.icns"
 else
-    ./scripts/build-logo.sh "$PACKAGE/logo.icns"
+    "$SCRIPTS/build-logo.sh" "$PACKAGE/logo.icns"
 fi
 mkdir -p "$PACKAGE/boot"
 cp "$M1N1_STAGE1" "$PACKAGE/boot/m1n1.bin"
