@@ -628,6 +628,9 @@ class InstallerMain:
             os_list = [i for i in os_list if not i.get("expert", False)]
         if self.cur_disk != self.sys_disk:
             os_list = [i for i in os_list if i.get("external_boot", False)]
+        if not os_list:
+            p_error("No installation options are available for this disk and mode.")
+            sys.exit(1)
         p_question("Choose an OS to install:")
         idx = self.choice("OS", [i["name"] for i in os_list])
         os = os_list[idx]
