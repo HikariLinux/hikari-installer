@@ -955,7 +955,7 @@ class InstallerMain:
         self.expert = False
         if os.environ.get("EXPERT", None):
             p_message("By default, this installer will hide certain advanced options that")
-            p_message("are only useful for Asahi Linux developers. You can enable expert mode")
+            p_message(f"are only useful for {DISTRO} developers. You can enable expert mode")
             p_message("to show them. Do not enable this unless you know what you are doing.")
             p_message("Please do not file bugs if things go wrong in expert mode.")
             self.expert = self.yesno("Enable expert mode?")
@@ -972,9 +972,9 @@ class InstallerMain:
         self.device = DEVICES.get(self.sysinfo.device_class, None)
         if not self.chip_min_ver or not self.device or (self.device.expert_only and not self.expert):
             p_error("This device is not supported yet!")
-            p_error("Please check out the Asahi Linux Blog for updates on device support:")
+            p_error(f"Please check the {DISTRO} documentation for device support:")
             print()
-            p_error("   https://asahilinux.org/blog/")
+            p_error(f"   {DISTRO_DOCS}")
             print()
             sys.exit(1)
 

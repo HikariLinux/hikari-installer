@@ -16,7 +16,6 @@ LIBFFI_TARGET_OS="macOS 26"
 LIBFFI_PKG="libffi-$LIBFFI_VER-macos.tar.gz"
 
 M1N1="$PWD/m1n1"
-ARTWORK="$PWD/artwork"
 AFW="$PWD/asahi_firmware"
 SRC="$PWD/src"
 DL="$PWD/dl"
@@ -103,11 +102,8 @@ rm "$PACKAGE/asahi_firmware"
 cp -r "$AFW" "$PACKAGE/"
 if [ -r "$LOGO" ]; then
     cp "$LOGO" "$PACKAGE/logo.icns"
-elif [ ! -r "$ARTWORK/logos/icns/AsahiLinux_logomark.icns" ]; then
-    echo "artwork missing, did you forget to update the submodules?"
-    exit 1
 else
-    cp "$ARTWORK/logos/icns/AsahiLinux_logomark.icns" "$PACKAGE/logo.icns"
+    ./scripts/build-logo.sh "$PACKAGE/logo.icns"
 fi
 mkdir -p "$PACKAGE/boot"
 cp "$M1N1_STAGE1" "$PACKAGE/boot/m1n1.bin"
